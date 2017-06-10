@@ -2,6 +2,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+const Actions = require('./Actions');
+
 const app = express();
 const port = 1337;
 
@@ -9,10 +11,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(logScraperData);
 
-app.post('/able_to_login', (req, res) => res.send('ok'));
-app.post('/latest_billing', (req, res) => res.send('ok'));
-app.post('/billings', (req, res) => res.send('ok'));
-app.post('/onboarding', (req, res) => res.send('ok'));
+app.post('/able_to_login', Actions.ableToLogin);
+app.post('/latest_billing', Actions.latestBilling);
+app.post('/billings', Actions.billings);
+app.post('/onboarding', Actions.onboarding);
 
 app.listen(port, () => console.log(`App listening on ${port}`));
 
